@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Royal 3D Carousel &rdquo; Documentation by FWDesign - v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;<span class="center alt">Royal 3D Carousel</span>&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 06/08/2013<br>
+					By:© FWD (FLASH WEB DESIGN)<br>
+					Email: <a href="mailto:contact@webdesign-flash.ro">contact@webdesign-flash.ro</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing our component. If you have any questions that are beyond the scope of this help file, please feel free to email via our email. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#htmlStructure">Important notes read this before anything else.</a></li>
+			<li><a href="#setupThumbnails">Setting up the thumbnails images/html contents.</a></li>
+			<li><a href="#instalationResponsiveOrFixed">How to install the carousel with responsive / fixed width.</a></li>
+			<li><a href="#instalationFluidWidth">How to install the carousel with fluid width.</a></li>
+			<li><a href="#config">Constructor parameters.</a></li>
+			<li><a href="#categories">Adding categories.</a></li>
+            <li><a href="#datalist">Adding thumbnails, html contents and media.</a></li>
+			<li><a href="#wp">Install in wordpress.</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+		</ol>
+	
+		<hr>
+		
+		<h3 id="important notes"><strong>Important notes make sure you read this!</strong> - <a href="#toc">top</a></h3>
+		<p>Before reading forward you should understand how this carousel works. As you will read installing the carousel into your html page is straight forward and relative simple. The carousel is using &lt;ul&gt and &lt;li&gt html elements as the base for the skin and categories (the carousel supports one or more categories), this way if you like you can generate the content with php or asp from a database.</p>
+		<p>Each thumbnail has associated with it an action, when a thumbnail is pressed a new webpage can be opened or a lightbox with a video, image or iframe, the paths and other data for the image and video can be easely set. In case of the html content setup, the active html content from a thumbnail can be enabled to interact with any links, buttons etc that it contains.</p>
+		<p>Try to keep the thumbnails count under 50, this way the performance of the carousel will be great, if you add more it will get slower specially on mobile. The carousel also has a separate option for the mobile case, to limit the number of the thumbnails displayed, even though the pc version contains more than this max number, because the performance may vary greatly from the pc version, especially on older mobiles phones or tablets.</p>
+		<p>Because of the unsymmetrical thumbnails arrangement the carousel looks really good with landscape or square format thumbnails, if you need portrait thumbnails the carousel will still work but it might not look as you expect because the thumbnails will be close.</p>
+		<p class="red">The examples which we have used in the demo page can be found in the demo folder. There is also a start folder which contains the minimal settings for the carousel for both the image and html contents version. Please use these files for referece to copy and paste the html and javascript code into your page.</p>
+		<p>The server is character case sensitive so always use lower case characters!</p>
+		
+		<h3 id="setupThumbnails"><strong>Setting up the thumbnails images/html contents.</strong> - <a href="#toc">top</a></h3>
+		<p>Before you start using the carousel you need to set the thumbnailWidth and thumbnailHeight properties in the carousel constructor, this two properties represents the thumbnail width and height. Also the thumbnailBorderSize is subtracted from these values for the final size of the image, so your final image width for example will actually be thumbnailWidth - thumbnailBorderSize.</p>
+		<p>For example with for the 400 and 266 width and height values, and the border size 10, the width and height of the image will actually be 390 and 256, while the whole thumbnail is 400x266.</p>
+		<p>The 3D setup is configured such that the center thumbnail will have the actual size, and the ones from the left and right will be scaled down. This is also the same for the 2D setup.</p>
+		<p>If you find it difficult to understand this rules save your images at the same size as we did in our example.</p>
+			
+		<h3 id="instalationResponsiveOrFixed"><strong>How to install the carousel with responsive / fixed width.</strong> - <a href="#toc">top</a></h3>
+        <ul>
+			<p class="red">Please note that in the html file which is used as reference we have used the "skin_modern_silver" skin, if you need another skin replace it by modifying the skin graphics path setting from the carousel constructor "skinPath". All skins are located in the load folder along with the images and css files.</p>
+			<li>This display type allows the carousel to be embedded in your html page in a &lt;div&gt element. This div element (the carousel's parent) can be located anywhere inside the page based on the page layout.</li>
+        	<li>Before you start there is a start_images_responsive_or_fixed.html file in the download files in the "start" folder for the images setup and start_html_content_responsive_or_fixed.html for the html content setup. This is a start template file which you can use to copy and paste the needed code this way you can make sure you are not making any mistake while setting up the carousel. Please note that these files contain only a few thumbnails entries, one for each lightbox media type and two cateogries for simplicity, this way it is easier to copy paste the code. If only one category is needed then delete the second &lt;ul&gt tag with the attribute data-cat. Please open these html files with a text editor like notepad or preferably notepad++.</li>
+			
+			<li>Make sure that you copy and paste in the same folder with your html file the java and load folder.</li>
+			<li>The javascript and css files must be imported, in the head section of your html file add the code from the below image.</li>
+			<img src="assets/images/script.png"></img>
+			<li>Next step is to initialize the carousel with javascript, in the head section add code from the below image. Please note that all parameters are described in the <a href="#config">constructor parameters</a> section</li>
+			<img src="assets/images/inst.png"></img>
+			<li>You need a &lt;div&gt element into which the carousel will be added as a child. This &lt;div&gt element (the carousel's parent) can be located anywhere inside the page based on the page layout, so create a &lt;div&gt and set an id for it, the id is important because it is passed in the carousel constructor, make sure it is unique. The div width and height and background color are set in the constructor, (example in the image below)</li>
+			<img src="assets/images/div.png"></img>
+			<li>There are three required and important parameters in the constructor (carouselWidth, carouselHeight, autoscale and skinPath), the width and height represents the maximum width and height of the parent &lt;div&gt and carousel, so for example if you need the carousel at a width of 940px and height of 538px just set that in the constructor (example in the image below).</li>
+			<img src="assets/images/required.png"></img>
+			<li>The autoscale is useful only if the layout is responsive or fluidwidth, this means that if you have a responsive layout and the layout width is less then the carousel width specified in the constructor and you want to keep a correct ratio then set autoscale to yes otherwise set it to no, if autoscale is set to yes the parent &lt;div&gt and carousel width and height will change based on the layout width this way a correct ratio is kept, if you don't want the height to change then set autoscale to no and only the carousel width will be modified.</li>
+			<li>The skinPath is the path to the folder that contains all the skin graphics image files, for example "load/skin_modern_silver".</li>
+			<li>Next step is to add the in the body element an &lt;div&gt element which represents the carousel datalist, this  &lt;div&gt element must have an unique id which is passed in the constructor. Inside this &lt;div&gt element the carousel categories are constructed. This is best illustrated in the below image. To add categories just copy and paste  an  &lt;ul&gt element with an attribute <span class="boldLi">data-cat</span> (please note that in the below image the html code is minimized, to view the entire html code observe the start_images_responsive_or_fixed.html). Make sure you read the <a href="#datalist">carousel datalist</a> section to understand how to add more cateogries, thumbnails and configure the carousel datalist.</li>
+			<img src="assets/images/data.png"></img>
+			<li>These are all the steps needed to setup the carousel, again all this code is located in the "start" folder in the four html files so you can copy and paste the code easily without errors. Please make sure to read the <a href="#config">constructor parameters</a> section to understand all the carousel properties.</li>
+         </ul>   
+		 
+		 <h3 id="instalationFluidWidth"><strong>How to install the carousel with fluid width.</strong> - <a href="#toc">top</a></h3>
+		 <p>This display type allows the carousel to be embedded in your html page and it will always fill the browser width. This div element (the carousel's parent) can be located anywhere inside the page based on the page layout. Please follow the same rules as in the <a href="#instalationResponsiveOrFixed">How to install the carousel with responsive / fixed width</a>. The only difference is that in the constructor the display type parameter must be set to fluidwidth like this:<span class="boldLi">displayType:"fluidwidth"</span>. Please note that there is a html file named start_images_fluid_width.html for the images setup or start_html_content_fluid_width.html for the html content setup as reference from which the html code can be copied and pasted into your own html page.</p>
+		          
+		<h3 id="config"><strong> Constructor parameters.</strong> - <a href="#toc">top</a></h3>
+		<p>These parameters represent the possible settings for the carousel, they are all visible in the below image and described below:</p>
+		<img src="assets/images/inst.png"></img>
+		 <ol>
+			<h4><strong>Required settings:</strong></h4>
+        	<li><span class="boldLi">carouselHolderDivId</span>:"myDiv" - the div id into which the carousel will be added (this is also necessary if the <span class="boldLi">displayType</span> is set to fluidwidth).</li>
+			<li><span class="boldLi">carouselDataListDivId</span>:"carouselData" - the id of the &lt;div&gt element used as the datalist and skin for the carousel.</li>
+			<li><span class="boldLi">displayType</span>:"responsive" - the display type, this can be <span class="boldLi">responsive</span> or <span class="boldLi">fluidwidth</span>, all display types are explained and an example is provided for each one of them.</li>
+			<li><span class="boldLi">autoScale</span>:"yes" - this can be "yes" or "no", this is useful only if the layout is responsive or fluidwidth, this means that if you have a responsive layout and the layout width is less then the carousel width specified in the constructor and you want to keep a correct ratio then set autoscale to yes otherwise set it to no, if autoscale is set to yes the parent &lt;div&gt and carousel width and height will change based on the layout width this way a correct ratio is kept, if you don't want the height to change then set autoscale to "no" and only the carousel width will be modified.</li>
+			<li><span class="boldLi">carouselWidth</span>:940 - This represents the maximum carousel width.</li>
+			<li><span class="boldLi">carouselHeight</span>:538 - This represents the maximum carousel height.</li>
+			<li><span class="boldLi">skinPath</span>:"load/skin_modern_silver" - this is the path to the skin graphics folder of the carousel.</li>
+			<br><h4><strong>Main settings:</strong></h4>
+			<li><span class="boldLi">backgroundColor</span>:"#DDDDDD" - the carousel background color.</li>
+			<li><span class="boldLi">backgroundImagePath</span>:"load/graphics/skin1/background.jpg" - this image is used as background image for the entire carousel.</li>
+			<li><span class="boldLi">thumbnailsBackgroundImagePath</span>:"load/graphics/skin1/thumbnailsBackground.jpg" - this image is used as a background image only for the upper thumbnails of the carousel.</li>
+			<li><span class="boldLi">scrollbarBackgroundImagePath</span>:"load/graphics/skin1/scrollbarBackground.jpg" - this image is used as a background image only for the lower controls of the carousel.</li>
+			<li><span class="boldLi">backgroundRepeat</span>:"repeat-x" - this is used for the CSS background-repeat property of all of the three above background images, it can be any of the CSS values like "repeat-x", "repeat-y", "no-repeat" etc.</li>
+			<li><span class="boldLi">showDisplay2DAlways</span>:"no" - this can be "yes" or "no", you can set the carousel to always display the 2D configuration even on browsers that support 3D if you want to.</li>
+			<li><span class="boldLi">carouselStartPosition</span>:"center" - this is the start position of the thumbnails of the carousel, it can be "left", "right" or "center".</li>
+			<li><span class="boldLi">numberOfThumbnailsToDisplayLeftAndRight</span>:4 - this represents the maximum number of thumbnails to be displayed on the left and right of the center.</li>
+			<li><span class="boldLi">slideshowDelay</span>:5000 - this is the slideshow delay in miliseconds - this means 5000 represents 5 seconds.</li>
+			<li><span class="boldLi">autoplay</span>:"no" - this can be "yes" or "no", it can enable the carousel to start with the autoplay on or off.</li>
+			<li><span class="boldLi">showPrevButton</span>:"yes" - this can be "yes" or "no", it shows or hides the previous button of the carousel.</li>
+			<li><span class="boldLi">showNextButton</span>:"yes" - this can be "yes" or "no", it shows or hides the next button of the carousel.</li>
+			<li><span class="boldLi">showSlideshowButton</span>:"yes" - this can be "yes" or "no", it shows or hides the slideshow button of the carousel.</li>
+			<li><span class="boldLi">disableNextAndPrevButtonsOnMobile</span>:"" - this can be "yes" or "no", it shows or hides the next and prev buttons on the mobile devices, if you want them to be displayed only on the pc.</li>
+			<li><span class="boldLi">controlsMaxWidth</span>:940 - this represends the max widths of the controls and is used to scale the scrollbar at resize.</li>
+			<li><span class="boldLi">slideshowTimerColor</span>:"#777777" - this is the color of the slideshow timer display numbers.</li>
+			<li><span class="boldLi">showContextMenu</span>:"yes" - this can be "yes" or "no", it shows or hides the context menu (at right click) of the carousel.</li>
+			<li><span class="boldLi">addKeyboardSupport</span>:"yes" - this can be "yes" or "no", it adds keyboard navigation support for the carousel, through the left and right arrows.</li>
+			<br><h4><strong>Thumbnail settings:</strong></h4>
+			<li><span class="boldLi">thumbnailWidth</span>:420 - this is the width of the carousel thumbnails.</li>
+			<li><span class="boldLi">thumbnailHeight</span>:286 - this is the height of the carousel thumbnails.</li>
+			<li><span class="boldLi">thumbnailSpaceOffset3D</span>:-19 - this is an offset used for the space between the thumbnails on the 3D version of the carousel. It can have a positive value to wider their space, or even a negative value to bring them closer.</li>
+			<li><span class="boldLi">thumbnailSpaceOffset2D</span>:-19 - this is an offset used for the space between the thumbnails on the 2D version of the carousel. The same as the 3D version it can have a positive value to wider the space between them, or even a negative value to bring them closer.</li>
+			<li><span class="boldLi">thumbnailBorderSize</span>:10 - the thumbnail border size in pixels.</li>
+			<li><span class="boldLi">thumbnailBackgroundColor</span>:"#666666" - the background color of the thumbnails.</li>
+			<li><span class="boldLi">thumbnailBorderColor1</span>:"#fcfdfd" - the upper border color of the thumbnails border. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">thumbnailBorderColor2</span>:"#e4e4e4" - the lower border color of the thumbnails border. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">maxNumberOfThumbnailsOnMobile</span>:13 - this is the maximum number of thumbnails to be displayed only on the mobile devices for performance reasons.</li>
+			<li><span class="boldLi">showThumbnailsHtmlContent</span>:"no" - this can be "yes" or "no". If it is "yes" then the carousel will display images in the thumbnails, otherwise a html content will be displayed.</li>
+			<li><span class="boldLi">enableHtmlContent</span>:"no" - this can be "yes" or "no". If it is "yes" then the thumbnails html content will be active such that you can click on the links or buttons etc. Please note that this way the main click on the thumb to open the lightbox or a link will be disabled.</li>
+			<li><span class="boldLi">textBackgroundColor</span>:"#333333" - the background color of the thumbnails text.</li>
+			<li><span class="boldLi">textBackgroundOpacity</span>:.7 - the opacity of the text background.</li>
+			<li><span class="boldLi">showText</span>:"" - this can be "yes" or "no", used to show or hide the thumbnails hover text.</li>
+			<li><span class="boldLi">showTextBackgroundImage</span>:"yes" - this can be "yes" or "no", used to show or hide the thumbnails text background image. If it is "no" then the previous color setting will be used.</li>
+			<li><span class="boldLi">showThumbnailBoxShadow:</span>:"yes" - this can be "yes" or "no", used to show an box shadow on the thumbnail if desired.</li>
+			<li><span class="boldLi">thumbnailBoxShadowCss</span>:"0px 2px 2px #555555" - this represents the CSS box-shadow property for the thumbnail.</li>
+			<br><h4><strong>Scrollbar settings:</strong></h4>
+			<li><span class="boldLi">showScrollbar</span>:"yes" - this can be "yes" or "no", used to show or hide the scrollbar.</li>
+			<li><span class="boldLi">disableScrollbarOnMobile</span>:"yes" - this can be "yes" or "no", used to disable the scrollbar only on mobile devices.</li>
+			<li><span class="boldLi">enableMouseWheelScroll</span>:"yes" - this can be "yes" or "no". Disables or enables the mouse wheel support for scrolling the carousel.</li>
+			<li><span class="boldLi">scrollbarHandlerWidth</span>:300 - the width of the scrollbar handler.</li>
+			<li><span class="boldLi">scrollbarTextColorNormal</span>:"#777777" - the normal color of the scrollbar text.</li>
+			<li><span class="boldLi">scrollbarTextColorSelected</span>:"#000000" - the selected color of the scrollbar text.</li>
+			<br><h4><strong>Combobox settings:</strong></h4>
+			<li><span class="boldLi">startAtCategory</span>:1 - If there is more then one category you can specify at which one to start, please note that the count starts from 1, if the "showAllCategories" setting is enabled it is considered the first category.</li>
+			<li><span class="boldLi">selectLabel</span>:"SELECT CATEGORIES" - The combobox default label.</li>
+			<li><span class="boldLi">showAllCategories</span>:"yes" - This can be "yes" or "no". If it is set to yes an extra combobox button will be added which will load all categories in a single category.</li>
+			<li><span class="boldLi">comboBoxPosition</span>:"topright" - This can be <span class="boldLi">topleft</span> or <span class="boldLi">topright</span>.</li>
+			<li><span class="boldLi">selectorBackgroundNormalColor1</span>:"#fcfdfd" - The combobox main button background upper normal color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">selectorBackgroundNormalColor2</span>:"#e4e4e4" - The combobox main button background lower normal color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">selectorBackgroundSelectedColor1</span>:"#a7a7a7" - The combobox main button background upper selected color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">selectorBackgroundSelectedColor2</span>:"#8e8e8e" - The combobox main button background lower selected color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">selectorTextNormalColor</span>:"#8b8b8b" - The combobox main button text normal color.</li>
+			<li><span class="boldLi">selectorTextSelectedColor</span>:"#FFFFFF" - The combobox main button text selected color.</li>
+			<li><span class="boldLi">buttonBackgroundNormalColor1</span>:"#e7e7e7" - The combobox buttons background upper normal color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">buttonBackgroundNormalColor2</span>:"#e7e7e7" - The combobox buttons background lower normal color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">buttonBackgroundSelectedColor1</span>:"#a7a7a7" - The combobox buttons background upper selected color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">buttonBackgroundSelectedColor2</span>:"#8e8e8e" - The combobox buttons background lower selected color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">buttonTextNormalColor</span>:"#000000" - The combobox buttons text normal color.</li>
+			<li><span class="boldLi">buttonTextSelectedColor</span>:"#FFFFFF" - The combobox buttons text selected color.</li>
+			<li><span class="boldLi">comboBoxHorizontalMargins</span>:12 - Horizontal margins/offset in pixels for the combobox.</li>
+			<li><span class="boldLi">comboBoxVerticalMargins</span>:12 - Vertical margins/offset in pixels for the combobox.</li>
+			<li><span class="boldLi">comboBoxCornerRadius</span>:0 - Corner radius in pixels for the combobox.</li>
+			<br><h4><strong>Lightbox settings:</strong></h4>
+			<li><span class="boldLi">addLightBoxKeyboardSupport</span>:"yes" - this can be "yes" or "no", adds keyboard support to the lightbox.</li>
+			<li><span class="boldLi">showLightBoxNextAndPrevButtons</span>:"yes" - this can be "yes" or "no", hides or shows the lightbox next and prev buttons.</li>
+			<li><span class="boldLi">showLightBoxZoomButton</span>:"yes" - this can be "yes" or "no", hides or shows the lightbox zoom button.</li>
+			<li><span class="boldLi">showLightBoxInfoButton</span>:"yes" - this can be "yes" or "no", hides or shows the lightbox info button and info window.</li>
+			<li><span class="boldLi">showlightboxSlideShowButton</span>:"yes" - this can be "yes" or "no", hides or shows the lightbox slideshow button.</li>
+			<li><span class="boldLi">showLightBoxInfoWindowByDefault</span>:"no" - this can be "yes" or "no", opens the info window by default.</li>
+			<li><span class="boldLi">slideShowAutoPlay</span>:"yes" - this can be "yes" or "no", slideshow autoplay feature.</li>
+			<li><span class="boldLi">lightBoxVideoAutoPlay</span>:"no" - this can be "yes" or "no", vimeo and youtube autoplay feature.</li>
+			<li><span class="boldLi">lightboxBackgroundColor</span>:"#000000" -the lightbox main background color.</li>
+			<li><span class="boldLi">lightBoxInfoWindowBackgroundColor</span>:"#FFFFFF" -the lightbox description window background color.</li>
+			<li><span class="boldLi">lightBoxItemBorderColor1</span>:"#FFFFFF" - the lightbox image or video upper border color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">lightBoxItemBorderColor2</span>:"#FFFFFF" - the lightbox image or video lower border color. If these two values are different, they create a gradient effect, if they are the same then there is a single color.</li>
+			<li><span class="boldLi">lightBoxItemBackgroundColor</span>:"#FFFFFF" - the lightbox image or video background color.</li>
+			<li><span class="boldLi">lightBoxMainBackgroundOpacity</span>:.8 - the lightbox main background opacity, a number from 0 to 1.</li>
+			<li><span class="boldLi">lightBoxInfoWindowBackgroundOpacity</span>:.9 - the lightbox description window background opacity, a number from 0 to 1.</li>
+			<li><span class="boldLi">lightBoxBorderSize</span>:5 - the lightbox image or video border size.</li>
+			<li><span class="boldLi">lightBoxBorderRadius</span>:0 - the lightbox border radius in pixels.</li>
+			<li><span class="boldLi">lightBoxSlideShowDelay</span>:4 - the lightbox slideshow delay in seconds.</li>
+		</ol>
+       
+	    <h3 id="categories"><strong>Adding categories.</strong> - <a href="#toc">top</a></h3>
+		<p>Adding categories is easy just copy and paste inside the datalist &lt;ul&gt element another &lt;ul&gt element with an attribute <span class="boldLi">data-cat</span>, this attribute is setting the button label. Inside the &lt;ul&gt element with the attribute <span class="boldLi">data-cat</span> thumbnails with images or html content can be added (please read  <a href="#datalist">Adding thumbnails and media</a>). To remove the category just delete the &lt;ul&gt element with an attribute <span class="boldLi">data-cat</span> which you don't need. Please note that if the carousel has only one category the combobox will be disabled/not visible. This is better illustrated in the below image, please note that we minified the html code, to view it maximized open any of the html files from the "start" folder provided in the download files.</p>
+		<img src="assets/images/data.png"></img>
+        
+        <h3 id="datalist"><strong>Adding thumbnails, html contents and media.</strong> - <a href="#toc">top</a></h3>
+		<p>This section describes how to add a thumbnail and how to configure it so that it display videos, images, iframes, html contents or open links. Make sure you have opened any of the html files from the "start" folder provided, in a text editor for reference. First you need to know that each thumbnail is associated with an image, video, iframe, link or html content. Please note that the &lt;li&gt with the attribute <span class="boldLi">data-info</span> which represents the lightbox description is optional, also the &lt;li&gt with the attribute <span class="boldLi">data-thumbnail-text</span> which represents the thumbnail description is optional if the <span class="boldLi">showText</span> is set to "no". To add more thumbnails just copy paste a &lt;li&gt element like in the examples below in the category of your choosing.</p>
+		<p><b>Adding images:</b></p>
+		<p>To add an image add the code from the below image into the datalist &lt;ul&gt just like the image below.The first &lt;li&gt element represents the image path, the second &lt;li&gt element represents the thumbnails path, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description. The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/image.png"></img>
+		
+		<p><b>Adding videos from vimeo:</b></p>
+		To add a video from vimeo add the code from the below image into the datalist &lt;ul&gt just like the image below. The first &lt;li&gt element represents the video data as you can see you can set the video width and height and also the url of the video which you want to display, the second &lt;li&gt element represents the thumbnails path, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description. The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/vimeo.png"></img>
+		
+		<p><b>Adding videos from youtube:</b></p>
+		To add a video from youtube add the code from the below image into the datalist &lt;ul&gt just like the image below. The first &lt;li&gt element represents the video data as you can see you can set the video width and height and also the url of the video from youtube which you want to display, the second &lt;li&gt element represents the thumbnails path, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description.The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/youtube.png"></img>
+		
+		<p><b>Adding an iframe (html page):</b></p>
+		To add a html page (iframe) add the code from the below image into the datalist &lt;ul&gt just like the image below. The first &lt;li&gt element represents the iframe data as you can see you can set the iframe width and height and also the url of the html page which you want to display, the second &lt;li&gt element represents the thumbnails path, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description.The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/iframe.png"></img>
+		
+		<p><b>Adding a link to open when a thumbnail is pressed:</b></p>
+		<p>To add a link to a thumbnail add the code from the below image into the datalist &lt;ul&gt just like the image below. The first &lt;li&gt element represents the link data as you can see you can add the url to open when the thumbnail is pressed and the url target, the second &lt;li&gt element represents the thumbnails path, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description. The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/link.png"></img>
+		
+		<p><b>Adding a html content:</b></p>
+		<p>The only difference to the image thumbnail is that the second &lt;li&gt element contains the html content directly, where the image had the thumbnail path. Instead the data-thumbnail-path setting, the one for html content will have a data-html-content setting, and the &lt;li&gt itself will contain any html content you want, you can add divs, tables, links, texts, buttons etc all of them modifiable with CSS. The lightbox features for opening a link, or showing a video or iframe remain the same. The next example will be for a link.</p>
+		To add a html content add the code from the below image into the datalist &lt;ul&gt just like the image below. The first &lt;li&gt element represents the link data as you can see you can add the url to open when the thumbnail is pressed and the url target, the second &lt;li&gt element represents the div that contains any html content you want also with CSS, the third &lt;li&gt element represents the thumbnail description and the forth &lt;li&gt element represents the lightbox description.The three extra text settings are used separately for each thumb to set the thumbnail text description and title. The first one text-title-offset is used to show more or less of the text in case of a title on double lines for example, or it can even be 0 if you don't want the title to be displayed at all except on mouse hover. The next two settings text-offset-top and text-offset-bottom are used to position the text after it is fully displayed at mouse hover such that it can be centralised better.</p>
+		<img src="assets/images/html.png"></img>
+		
+		<p>In the case that you set the <strong>enableHtmlContent</strong>setting to "yes", then it will enable the thumbnails html content to be active such that you can click on the links or buttons etc. Please note that this way the main click on the thumb to open the lightbox or a link will be disabled. Also in this case you don't need the &lt;li&gt elements for the lightbox or text, just like in the image below:</p>
+		<img src="assets/images/simpleHtml.png"></img>
+		
+		<h3 id="wp"><strong>Install in wordpress:</strong> - <a href="#toc">top</a></h3>
+		<p>We have tested the carousel on wordpress version 3.4, if you don't have the latest version then please install it, on an older version the embedding might not work.</p>
+		<p>Make sure you read the the other sections in the help file, it is important to familiarize your self with the carousel settings and what needs to be configured.</p>
+		<p>You need a ftp program to connect to your ftp server and upload the carousel files, I use filezila is a free ftp program.</p>
+		<p>Connect to your server and open the folder in which wordpress is located, in my case it is "wp", in that folder upload the load folder and the java folder, the load folder contains the images, skins and css files and the java folder contains the javascript file. If you want to add more images upload them into the load folder inside images and thumbnails folders, but also make sure to add and entry in the carousel datalist too (this is explained in <a href="#datalist">Adding thumbnails and media</a>).</p>
+		<p>To embed the carousel into wordpress first login as an administrator, from the menu open pages, add your page title and select the HTML tab not the VISUAL tab, after you do this copy and paste the text from the wordpress.txt file, replace http://www.webdesign-flash.ro/wp/ with your domain name and your wordpress folder label then save the changes. To add more thumbnails read the <a href="#datalist">Adding thumbnails and media</a></p>
+		<p>You can add a .css file for the description window, please note that the wordpress has it's own set of css rules this is based on the theme, each theme is different, some times this css rules might have higher precedence over the one you declare so if this is the case you must use inline css for the description window or use the !important.</p>
+		
+		
+        <h3 id="credits"><strong>Sources and Credits:</strong> - <a href="#toc">top</a></h3>
+  
+        <p>This component was made by Mihai from FWD (FWDesign) <a href="http://www.webdesign-flash.ro">FLASH WEB DESIGN</a>, for more information and support contact us at <a href="mailto:youremail@yourdomain.com">contact@webdesign-flash.ro</a></p>
+		
+		<p>Once again, thank you so much for purchasing this item. As I said at the beginning, I'd be glad to help you if you have any questions regarding this gallery and I'll do my best to assist.</p> 
+		
+		<p class="append-bottom alt large"><strong>FWDesign</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
+
+</script>
